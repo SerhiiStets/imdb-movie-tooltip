@@ -3,13 +3,23 @@
   position: fixed;
   bottom: 25px;
   left: 10px;
-  font-size: 12px;
+  font-size: 11px;
+  font-family: 'Arial', sans-serif;
   background-color: white;
   width: 300px;
   height: 70px;
   box-shadow: 1px 1px 5px rgba(122, 122, 122, 0.5);
   border-top: 3px solid #007A15;
   color: grey;
+}
+
+#line-separator {
+  position: fixed;
+  width: 253px;
+  bottom: 48px;
+  left: 57px;
+  height: 1px;
+  background: #939393;
 }
 
 #imdb_score {
@@ -26,7 +36,7 @@
 
 p {
   color: black;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 #poster {
@@ -38,4 +48,16 @@ p {
   left: 66px;
   bottom: 63px;
   width: 208px;
+}
+
+#director {
+  position: fixed;
+  bottom: 56px;
+  left: 68px;
+}
+
+#actors {
+  position: fixed;
+  bottom: 30px;
+  left: 67px;
 }
