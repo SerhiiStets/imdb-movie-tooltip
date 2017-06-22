@@ -1,6 +1,41 @@
-#tooltip{
+#tooltip {
+  display: none;
   position: fixed;
   bottom: 25px;
   left: 10px;
-  font-size: 8;
+  font-size: 12px;
+  background-color: white;
+  width: 300px;
+  height: 70px;
+  box-shadow: 1px 1px 5px rgba(122, 122, 122, 0.5);
+  border-top: 3px solid #007A15;
+  color: grey;
+}
+
+#imdb_score {
+  position: fixed;
+  left: 288px;
+  bottom: 73px;
+}
+
+#meta_score {
+  position: fixed;
+  left: 290px;
+  bottom: 57px;
+}
+
+p {
+  color: black;
+  font-size: 13px;
+}
+
+#poster {
+  height: 70px;
+}
+
+#movie_name {
+  position: fixed;
+  left: 66px;
+  bottom: 63px;
+  width: 208px;
 }

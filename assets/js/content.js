@@ -1,6 +1,11 @@
 $().ready(function() {
+
+  $('body').append($('<div/>', {
+    id: 'tooltip'
+  }));
+
   $("a").mouseenter(function() {
-    $("#tooltip").empty();
+    hide();
 
     if ($(this).attr('href').indexOf("/title/") !== -1) {
 
@@ -10,36 +15,58 @@ $().ready(function() {
       $.get(url, function(data) {
         var imdb_score = $('[itemprop=ratingValue]', $(data)).text();
         var meta_score = $('.metacriticScore', $(data)).text();
+        var year = $('#titleYear', $(data)).text();
+        var image_url = ""
+        $('.poster img', $(data)).each(function() {
+          image_url = $(this).attr('src')
+        });
         if (imdb_score == "") {
-          imdb_score = "No score"
+          imdb_score = "??"
         };
-        show_movie(movie_name, imdb_score, meta_score);
+        if (meta_score == "") {
+          meta_score = "??"
+        }
+        show_movie(movie_name, imdb_score, meta_score, year, image_url);
       });
-
     };
-
   });
 
   $("a").mouseleave(function() {
-    $("#tooltip").empty();
+    hide();
   });
 
 });
 
-function show_movie(name, imdb, meta) {
-  $('body').append($('<div/>', {
-    id: 'tooltip'
+
+function show_movie(name, imdb, meta, year, poster) {
+  $("#tooltip").css('display', 'block');
+
+  $('#tooltip').append($('<img/>', {
+    id: 'poster',
+    src: poster
   }));
 
-  $('#tooltip').append($('<div>' + name + ' </div>', {
+  $('#tooltip').append($('<div/>', {
     id: 'movie_name'
   }));
 
-  $('#tooltip').append($('<div>' + imdb + ' </div>', {
+  $("#movie_name").append('<p>' + name + year + '</p>')
+
+  $('#tooltip').append($('<div/>', {
     id: 'imdb_score'
   }));
 
-  $('#tooltip').append($('<div>' + meta + ' </div>', {
+  $('#imdb_score').append(imdb);
+
+  $('#tooltip').append($('<div/>', {
     id: 'meta_score'
   }));
+
+  $('#meta_score').append(meta);
+
+}
+
+function hide() {
+  $("#tooltip").empty();
+  $("#tooltip").css('display', 'none');
 }
