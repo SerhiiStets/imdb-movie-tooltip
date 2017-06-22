@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+
+  "name": "Imdb movie tooltip",
+  "description": "Movie popup tooltip for imdb",
+  "version": "1.0.0",
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+
+  "content_scripts": [
+    {
+      "css": [ "/assets/css/styles.css" ],
+      "js": [ "assets/js/jquery.min.js", "/assets/js/content.js" ],
+      "matches": [ "http://www.imdb.com/*" ]
+    }
+  ],
+
+  "permissions": [
+    "activeTab"
+  ]
+
+}
