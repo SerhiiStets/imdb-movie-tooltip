@@ -11,7 +11,7 @@ $().ready(function() {
         var imdb_score = $('[itemprop=ratingValue]', $(data)).text();
         var meta_score = $('.metacriticScore', $(data)).text();
         var year = $('#titleYear', $(data)).text();
-        var image_url = ""
+        var image_url = "";
         var director_name = $('[itemprop=director]', $(data)).text();
         var actors_names = [];
 
@@ -20,20 +20,20 @@ $().ready(function() {
         });
 
         $('.poster img', $(data)).each(function() {
-          image_url = $(this).attr('src')
+          image_url = $(this).attr('src');
         });
 
         if (imdb_score == "") {
-          imdb_score = "??"
-        };
+          imdb_score = "??";
+        }
 
         if (meta_score == "") {
-          meta_score = "??"
+          meta_score = "??";
         }
         hide();
         show_movie(movie_name, imdb_score, meta_score, year, image_url, director_name, actors_names);
       });
-    };
+    }
   }).mouseout(function() {
     hide();
   });
@@ -41,6 +41,8 @@ $().ready(function() {
 });
 
 function show_movie(name, imdb, meta, year, poster, director, actors) {
+  var color = metascore_color(meta);
+
   $("#tooltip").css('display', 'block');
 
   add_divs();
@@ -50,19 +52,20 @@ function show_movie(name, imdb, meta, year, poster, director, actors) {
     src: poster
   }));
 
-  $("#movie_name").append('<p>' + name + year + '</p>')
+  $("#movie_name").append('<p>' + check_movie_name(name) + year + '</p>');
 
   $('#imdb_score').append(imdb);
 
   $('#meta_score').append(meta);
 
-  $("#meta_score").css("color", metascore_color(meta));
+  $("#meta_score").css("color", color);
+  $("#tooltip").css("border-top-color", color);
 
   $('#director').append(director);
 
-  $('#actors').append(actors_list(actors))
+  $('#actors').append(actors_list(actors));
 
-};
+}
 
 function add_divs() {
   $('body').append($('<div/>', {
@@ -93,7 +96,7 @@ function add_divs() {
   $('#tooltip').append($('<div/>', {
     id: 'actors'
   }));
-};
+}
 
 function actors_list(names) {
   var list = "";
@@ -108,23 +111,36 @@ function actors_list(names) {
   if (list.length > 43) {
     var value = list.length - 42;
     list = list.substring(0, list.length - value);
-    list += "..."
+    list += "...";
   }
   return list;
 
-};
+}
+
+function check_movie_name(movie) {
+  if (movie.indexOf("(20") !== -1) {
+    movie = movie.substring(0, movie.length - 7);
+  }
+
+  if (movie.length > 33) {
+    var value = movie.length - 30;
+    movie = movie.substring(0, movie.length - value);
+    movie += "...";
+  }
+  return movie;
+}
 
 function metascore_color(score) {
   if (score == "??") {
-    return "grey"
+    return "grey";
   } else if (score < 40) {
-    return 'red'
+    return 'red';
   } else if (score < 61) {
-    return 'orange'
+    return 'orange';
   } else {
-    return 'green'
-  };
-};
+    return '#007A15';
+  }
+}
 
 function hide() {
   $('#tooltip').each(function() {
@@ -133,4 +149,4 @@ function hide() {
   $("#tooltip").empty();
   $("#tooltip").css('display', 'none');
 
-};
+}

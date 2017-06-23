@@ -13,13 +13,20 @@
   color: grey;
 }
 
-#line-separator {
+#poster {
+  height: 70px;
+}
+
+p {
+  color: black;
+  font-size: 12px;
+}
+
+#movie_name {
   position: fixed;
-  width: 253px;
-  bottom: 48px;
-  left: 57px;
-  height: 1px;
-  background: #939393;
+  left: 66px;
+  bottom: 63px;
+  width: 208px;
 }
 
 #imdb_score {
@@ -34,26 +41,19 @@
   bottom: 57px;
 }
 
-p {
-  color: black;
-  font-size: 12px;
-}
-
-#poster {
-  height: 70px;
-}
-
-#movie_name {
-  position: fixed;
-  left: 66px;
-  bottom: 63px;
-  width: 208px;
-}
-
 #director {
   position: fixed;
   bottom: 56px;
   left: 68px;
+}
+
+#line-separator {
+  position: fixed;
+  width: 253px;
+  bottom: 48px;
+  left: 57px;
+  height: 1px;
+  background: #939393;
 }
 
 #actors {
