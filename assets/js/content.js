@@ -1,38 +1,48 @@
 $().ready(function() {
 
   add_divs();
+  var timeoutId;
   $("a").mouseenter(function() {
     hide();
     if ($(this).attr('href').indexOf("/title/") !== -1) {
-      var movie_name = $(this).text();
-      var url = ($(this).attr('href').indexOf("imdb") !== -1) ? $(this).attr('href') : ("http://www.imdb.com" + $(this).attr('href'));
+      if (!timeoutId) {
+        var hov = $(':hover').last();
+        timeoutId = window.setTimeout(function() {
+          timeoutId = null;
+          if (!$(':hover').last().is(hov)) {
+            return;
+          }
+          var movie_name = hov.text();
+          var url = (hov.attr('href').indexOf("imdb") !== -1) ? hov.attr('href') : ("http://www.imdb.com" + hov.attr('href'));
 
-      $.get(url, function(data) {
-        var imdb_score = $('[itemprop=ratingValue]', $(data)).text();
-        var meta_score = $('.metacriticScore', $(data)).text();
-        var year = $('#titleYear', $(data)).text();
-        var image_url = "";
-        var director_name = $('[itemprop=director]', $(data)).text();
-        var actors_names = [];
+          $.get(url, function(data) {
+            var imdb_score = $('[itemprop=ratingValue]', $(data)).text();
+            var meta_score = $('.metacriticScore', $(data)).text();
+            var year = $('#titleYear', $(data)).text();
+            var image_url = "";
+            var director_name = $('[itemprop=director]', $(data)).text();
+            var actors_names = [];
 
-        $("[itemprop=actors] > [itemprop=url]", $(data)).each(function() {
-          actors_names.push($(this).text());
-        });
+            $("[itemprop=actors] > [itemprop=url]", $(data)).each(function() {
+              actors_names.push($(this).text());
+            });
 
-        $('.poster img', $(data)).each(function() {
-          image_url = $(this).attr('src');
-        });
+            $('.poster img', $(data)).each(function() {
+              image_url = $(this).attr('src');
+            });
 
-        if (imdb_score == "") {
-          imdb_score = "??";
-        }
+            if (imdb_score == "") {
+              imdb_score = "??";
+            }
 
-        if (meta_score == "") {
-          meta_score = "??";
-        }
-        hide();
-        show_movie(movie_name, imdb_score, meta_score, year, image_url, director_name, actors_names);
-      });
+            if (meta_score == "") {
+              meta_score = "??";
+            }
+            hide();
+            show_movie(movie_name, imdb_score, meta_score, year, image_url, director_name, actors_names);
+          });
+        }, 700);
+      }
     }
   }).mouseout(function() {
     hide();
@@ -118,7 +128,7 @@ function actors_list(names) {
 }
 
 function check_movie_name(movie) {
-  if (movie.indexOf("(20") !== -1) {
+  if (movie.indexOf("(20") !== -1 || movie.indexOf("(19") !== -1) {
     movie = movie.substring(0, movie.length - 7);
   }
 
