@@ -1,0 +1,38 @@
+html {
+  overflow: hidden;
+  display: block;
+}
+
+body {
+  width: 220px;
+  height: 90px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #BDBDBD;
+}
+
+.togglebutton {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.togglebutton label:hover {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+#tg_butt1 {
+  margin-left: 10px;
+}
+
+#tg_butt2 {
+  margin-left: 3px;
+}
+
+#help {
+  margin-left: 25px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 0.45);
+}
