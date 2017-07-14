@@ -109,13 +109,13 @@ function showLargeTooltip() {
 
   // movie name
   $("#movie_name").css("left", 80);
-  $("#movie_name").css("bottom", 70);
+  $("#movie_name").css("bottom", 75);
   $("#movie_name").css("width", 208 * change_val);
   $('#movie_name > p:eq(0)').css('font-size', 12 + change_val);
 
   // director
   $("#director").css("bottom", 65);
-  $("#director").css("left", 80);
+  $("#director").css("left", 82);
 
   // actors
   $("#actors").css("left", 80);
@@ -127,11 +127,11 @@ function showLargeTooltip() {
 
   // imdb score
   $("#imdb_score").css("left", 380);
-  $("#imdb_score").css("bottom", 95);
+  $("#imdb_score").css("bottom", 90);
 
   // meta score
-  $("#meta_score").css("left", 383);
-  $("#meta_score").css("bottom", 76);
+  $("#meta_score").css("left", 382);
+  $("#meta_score").css("bottom", 70);
 
 }
 
