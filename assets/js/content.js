@@ -1,4 +1,5 @@
 $().ready(function() {
+  'use strict';
   getPluginValue(function(value) {
     if (value.plugin == true) {
       addDivs();
@@ -91,6 +92,8 @@ function showMovie(name, imdb, meta, year, poster, director, actors) {
   getTooltipValue(function(value) {
     if (value.large_tooltip == true) {
       showLargeTooltip();
+    } else {
+      showSmallTooltip();
     }
   });
 }
@@ -100,7 +103,7 @@ function showLargeTooltip() {
   var height = 400 / change_val;
 
   // tooltip
-  $("#tooltip").css('width', "400px");
+  $("#tooltip").css('width', 400);
   $("#tooltip").css('height', height);
   $("#tooltip").css("font-size", 11 + change_val);
 
@@ -133,6 +136,43 @@ function showLargeTooltip() {
   $("#meta_score").css("left", 382);
   $("#meta_score").css("bottom", 70);
 
+}
+
+
+function showSmallTooltip() {
+  // tooltip
+  $("#tooltip").css('width', 300);
+  $("#tooltip").css('height', 70);
+  $("#tooltip").css("font-size", 11);
+
+  // poster
+  $("#poster").css('height', 70);
+
+  // movie name
+  $("#movie_name").css("left", 66);
+  $("#movie_name").css("bottom", 63);
+  $("#movie_name").css("width", 208);
+  $('#movie_name > p:eq(0)').css('font-size', 12);
+
+  // director
+  $("#director").css("bottom", 56);
+  $("#director").css("left", 68);
+
+  // actors
+  $("#actors").css("left", 67);
+
+  // line
+  $("#line-separator").css("left", 57);
+  $("#line-separator").css("width", 253);
+  $("#line-separator").css("bottom", 48);
+
+  // imdb score
+  $("#imdb_score").css("left", 288);
+  $("#imdb_score").css("bottom", 73);
+
+  // meta score
+  $("#meta_score").css("left", 290);
+  $("#meta_score").css("bottom", 57);
 }
 
 function addDivs() {
