@@ -1,5 +1,4 @@
-$().ready(function() {
-  'use strict';
+$().ready(function() {'use strict';
   load();
 
   $('#check_1').change(function() {

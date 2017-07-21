@@ -67,7 +67,6 @@ function getData(link, name) {
 function showMovie(name, imdb, meta, year, poster, director, actors) {
   var color = metascoreColor(meta);
 
-  $("#tooltip").css('display', 'block');
 
   addDivs();
 
@@ -136,6 +135,8 @@ function showLargeTooltip() {
   $("#meta_score").css("left", 382);
   $("#meta_score").css("bottom", 70);
 
+
+  $("#tooltip").css('display', 'block');
 }
 
 
@@ -173,6 +174,9 @@ function showSmallTooltip() {
   // meta score
   $("#meta_score").css("left", 290);
   $("#meta_score").css("bottom", 57);
+
+
+  $("#tooltip").css('display', 'block');
 }
 
 function addDivs() {

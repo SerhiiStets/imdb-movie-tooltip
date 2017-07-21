@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Imdb movie tooltip",
+  "name": "IMDb movie tooltip",
+  "short_name": "IMDb tooltip",
   "description": "Movie popup tooltip for imdb",
   "version": "1.0.0.0",
 
