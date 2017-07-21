@@ -1,0 +1,45 @@
+html {
+  overflow: hidden;
+  display: block;
+}
+
+body {
+  width: 210px;
+  height: 70px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #BDBDBD;
+}
+
+#bg {
+  background-color: #ffffff;
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#tg1 {
+  margin-top: 10px;
+}
+
+#tg2 {
+  margin-top: 40px;
+}
+
+.togglebutton {
+  position: absolute;
+  margin-left: 10px;
+}
+
+.togglebutton label:hover {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+#tg_butt1 {
+  margin-left: 44px;
+}
+
+#tg_butt2 {
+  margin-left: 3px;
+}

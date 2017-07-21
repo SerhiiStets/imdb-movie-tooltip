@@ -1,14 +1,22 @@
 {
   "manifest_version": 2,
 
-  "name": "Imdb movie tooltip",
+  "name": "IMDb movie tooltip",
+  "short_name": "IMDb tooltip",
   "description": "Movie popup tooltip for imdb",
-  "version": "1.0.0",
+  "version": "1.0.0.0",
 
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon_128.png",
+    "default_popup": "popup.html"
   },
 
+  "icons": {
+        "128": "icon_128.png",
+        "64": "icon_64.png",
+        "16": "icon_16.png"
+  },
+  
   "content_scripts": [
     {
       "css": [ "/assets/css/styles.css" ],
@@ -16,9 +24,10 @@
       "matches": [ "http://www.imdb.com/*" ]
     }
   ],
-
+  
   "permissions": [
+    "storage",
     "activeTab"
-  ]
 
+  ]
 }
