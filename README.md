@@ -7,6 +7,7 @@ Movie popup tooltip for imdb that can show
 * actors
 
 ## Install on Chrome
+* Get "IMDb movie tooltip" directly from [Chrome Web Store](https://chrome.google.com/webstore/detail/imdb-movie-tooltip/icdihmnhalbndlflelahijhpglmoafoe/reviews?utm_campaign=en&utm_source=en-et-na-us-oc-webstrhm&utm_medium=et)
 * For dev branch get code from this repo and follow [these instructions](https://developer.chrome.com/extensions/getstarted#unpacked)
 
 ## Feedback
