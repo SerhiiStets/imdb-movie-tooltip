@@ -1,30 +1,32 @@
 $().ready(function() {
   'use strict';
-  getPluginValue(function(value) {
-    if (value.plugin == true) {
-      addDivs();
-      var timeoutId;
-      $("a").mouseenter(function() {
-        hide();
-        if ($(this).attr('href').indexOf("/title/") !== -1) {
-          if (!timeoutId) {
-            var hov = $(':hover').last();
-            timeoutId = window.setTimeout(function() {
-              timeoutId = null;
-              if (!$(':hover').last().is(hov)) {
-                return;
-              }
-              var movie_name = hov.text();
-              var url = (hov.attr('href').indexOf("imdb") !== -1) ? hov.attr('href') : ("http://www.imdb.com" + hov.attr('href'));
-              getData(url, movie_name);
-            }, 700);
+
+  addDivs();
+  var timeoutId;
+  $("a").mouseenter(function() {
+    hide();
+    if ($(this).attr('href').indexOf("/title/") !== -1) {
+      if (!timeoutId) {
+        var hov = $(':hover').last();
+        timeoutId = window.setTimeout(function() {
+          timeoutId = null;
+          if (!$(':hover').last().is(hov)) {
+            return;
           }
-        }
-      }).mouseout(function() {
-        hide();
-      });
+          var movie_name = hov.text();
+          var url = (hov.attr('href').indexOf("imdb") !== -1) ? hov.attr('href') : ("http://www.imdb.com" + hov.attr('href'));
+          getPluginValue(function(value) {
+            if (value.plugin == true) {
+              getData(url, movie_name);
+            }
+          });
+        }, 700);
+      }
     }
+  }).mouseout(function() {
+    hide();
   });
+
 });
 
 function getPluginValue(callback) {
@@ -67,7 +69,6 @@ function getData(link, name) {
 function showMovie(name, imdb, meta, year, poster, director, actors) {
   var color = metascoreColor(meta);
 
-
   addDivs();
 
   $('#tooltip').append($('<img/>', {
@@ -91,10 +92,16 @@ function showMovie(name, imdb, meta, year, poster, director, actors) {
   getTooltipValue(function(value) {
     if (value.large_tooltip == true) {
       showLargeTooltip();
+
+      chekScores(imdb, meta, "large");
     } else {
       showSmallTooltip();
+
+      chekScores(imdb, meta, "small");
     }
   });
+
+
 }
 
 function showLargeTooltip() {
@@ -232,12 +239,34 @@ function checkMovieName(movie) {
   if (movie.indexOf("(20") !== -1 || movie.indexOf("(19") !== -1) {
     movie = movie.substring(0, movie.length - 7);
   }
-  if (movie.length > 33) {
-    var value = movie.length - 30;
+  if (movie.length > 32) {
+    var value = movie.length - 29;
     movie = movie.substring(0, movie.length - value);
     movie += "...";
   }
   return movie;
+}
+
+function chekScores(imdb_score, meta_score, mode) {
+  if (imdb_score == "??" && meta_score == "??") {
+    if (mode == "small") {
+      $("#imdb_score").css("left", 290);
+    } else {
+      $("#imdb_score").css("left", 382);
+    }
+  } else if (imdb_score == "??") {
+    if (mode == "small") {
+      $("#imdb_score").css("left", 290);
+    } else {
+      $("#imdb_score").css("left", 382);
+    }
+  } else {
+    if (mode == "small") {
+      $("#imdb_score").css("left", 288);
+    } else {
+      $("#imdb_score").css("left", 380);
+    }
+  }
 }
 
 function metascoreColor(score) {
